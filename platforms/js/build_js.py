@@ -100,7 +100,7 @@ class Builder:
                "-DWITH_GTK_2_X=OFF",
                "-DWITH_IPP=OFF",
                "-DWITH_JASPER=OFF",
-               "-DWITH_JPEG=OFF",
+               "-DWITH_JPEG=ON",
                "-DWITH_WEBP=OFF",
                "-DWITH_OPENEXR=OFF",
                "-DWITH_OPENGL=OFF",
@@ -118,7 +118,7 @@ class Builder:
                "-DWITH_GPHOTO2=OFF",
                "-DWITH_LAPACK=OFF",
                "-DWITH_ITT=OFF",
-               "-DWITH_QUIRC=ON",
+               "-DWITH_QUIRC=OFF",
                "-DBUILD_ZLIB=ON",
                "-DBUILD_opencv_apps=OFF",
                "-DBUILD_opencv_calib3d=ON",
@@ -127,8 +127,8 @@ class Builder:
                "-DBUILD_opencv_flann=ON",  # No bindings provided. This module is used as a dependency for other modules.
                "-DBUILD_opencv_gapi=OFF",
                "-DBUILD_opencv_ml=OFF",
-               "-DBUILD_opencv_photo=ON",
-               "-DBUILD_opencv_imgcodecs=OFF",
+               "-DBUILD_opencv_photo=OFF",
+               "-DBUILD_opencv_imgcodecs=ON",
                "-DBUILD_opencv_shape=OFF",
                "-DBUILD_opencv_videoio=OFF",
                "-DBUILD_opencv_videostab=OFF",
@@ -139,10 +139,10 @@ class Builder:
                "-DBUILD_opencv_js=ON",
                "-DBUILD_opencv_python2=OFF",
                "-DBUILD_opencv_python3=OFF",
-               "-DBUILD_EXAMPLES=ON",
+               "-DBUILD_EXAMPLES=OFF",
                "-DBUILD_PACKAGE=OFF",
-               "-DBUILD_TESTS=ON",
-               "-DBUILD_PERF_TESTS=ON"]
+               "-DBUILD_TESTS=OFF",
+               "-DBUILD_PERF_TESTS=OFF"]
         if self.options.cmake_option:
             cmd += self.options.cmake_option
         if self.options.build_doc:
