@@ -13,6 +13,8 @@ core = {
     'Algorithm': [],
 }
 
+imgcodecs = {'': ['imencode', 'imdecode']}
+
 imgproc = {
     '': [
         'Canny',
@@ -206,7 +208,7 @@ calib3d = {
     ],
 }
 
-white_list = makeWhiteList([core, imgproc, objdetect, video, dnn, features2d, photo, calib3d])
+white_list = makeWhiteList([core, imgcodecs, imgproc, objdetect, video, dnn, features2d, photo, calib3d])
 
 # namespace_prefix_override['dnn'] = ''  # compatibility stuff (enabled by default)
 # namespace_prefix_override['aruco'] = ''  # compatibility stuff (enabled by default)
