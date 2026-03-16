@@ -596,6 +596,11 @@ endforeach()
 #message(STATUS "CPU_BASELINE_FINAL=${CPU_BASELINE_FINAL}")
 #message(STATUS "CPU_DISPATCH_FINAL=${CPU_DISPATCH_FINAL}")
 
+# Emscripten: cv_cpu_dispatch.h enables CV_WASM_SIMD and wasm_simd128.h; require -msimd128 so intrinsics compile
+if(EMSCRIPTEN)
+  set(CPU_BASELINE_FLAGS "${CPU_BASELINE_FLAGS} -msimd128")
+endif()
+
 #if(CPU_DISPATCH_FINAL AND NOT PYTHON_DEFAULT_EXECUTABLE)
 #  message(FATAL_ERROR "Python is required for CPU dispatched optimization support")
 #endif()
