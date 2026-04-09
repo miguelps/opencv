@@ -57,7 +57,7 @@ BUILD_FLAGS=""
 declare -a CMAKE_OPTION_ARGS=()
 
 # cmake-only
-BUILD_LIST="core,imgproc,imgcodecs,dnn"
+BUILD_LIST="core,imgproc,imgcodecs"
 CMAKE_BUILD_TYPE=MinSizeRel
 CMAKE_PTHREADS=ON
 declare -a CMAKE_EXTRA_DEFINES=()
@@ -506,7 +506,8 @@ run_cmake_engine() {
             -DCMAKE_SHARED_LINKER_FLAGS=-fwasm-exceptions
         )
     fi
-    # Imgcodecs: keep JPEG + PNG only (libjpeg-turbo, libpng, zlib). Drop WebP/TIFF/JPEG2000.
+    # Imgcodecs: JPEG + PNG (libjpeg-turbo, libpng, zlib). BUILD_JPEG forces 3rdparty libjpeg-turbo for WASM.
+    # Drop WebP/TIFF/JPEG2000.
     # Protobuf: off so libprotobuf is not built (DNN still builds; ONNX/TF/Caffe protobuf importers disabled).
     echo -e "${YELLOW}Configuring with emcmake ...${NC}"
     emcmake cmake -S "$OPENCV_DIR" -B "$BUILD_DIR" \
@@ -515,6 +516,8 @@ run_cmake_engine() {
         -DWITH_ITT=OFF \
         -DWITH_IPP=OFF \
         -DWITH_PROTOBUF=OFF \
+        -DWITH_JPEG=ON \
+        -DBUILD_JPEG=ON \
         -DWITH_WEBP=OFF \
         -DWITH_TIFF=OFF \
         -DWITH_OPENJPEG=OFF \
